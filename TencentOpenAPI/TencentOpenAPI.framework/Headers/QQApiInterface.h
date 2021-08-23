@@ -77,6 +77,45 @@ typedef void (^sendResultBlock)(NSDictionary *result);
  */
 + (QQApiSendResultCode)sendMessageToQQAvatarWithReq:(QQBaseReq*)req;
 
+
++ (QQApiSendResultCode)sendMessageToQQAuthWithReq:(QQBaseReq*)req;
+
+
+/**
+ 向手Q发起绑群请求
+ \param req 请求的内容
+ \param resultBlock 请求回调
+ */
++ (void)sendThirdAppBindGroupReq:(QQBaseReq *)req resultBlock:(sendResultBlock)resultBlock;
+
+/**
+ 向手Q发起加群请求
+ \param req 请求的内容
+ \param resultBlock 请求回调
+ */
++ (void)sendThirdAppJoinGroupReq:(QQBaseReq *)req resultBlock:(sendResultBlock)resultBlock;
+
+/**
+ 向手Q发起解绑群请求
+ \param req 请求的内容
+ \param resultBlock 请求回调
+ */
++ (void)sendThirdAppUnBindGroupReq:(QQBaseReq *)req resultBlock:(sendResultBlock)resultBlock;
+
+/**
+ 向手Q发起创建QQ频道的请求
+ \param req 请求的内容
+ \return 请求发送结果码
+ */
++ (QQApiSendResultCode)sendMessageToCreateQQGroupProWithReq:(QQBaseReq*)req;
+
+/**
+ 向手Q发起加入QQ频道的请求
+ \param req 请求的内容
+ \return 请求发送结果码 
+ */
++ (QQApiSendResultCode)sendMessageToJoinQQGroupProWithReq:(QQBaseReq*)req;
+
 /**
  向手Q发起组图分享到表情收藏
  \param req 分享内容的请求
