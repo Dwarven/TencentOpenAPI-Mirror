@@ -248,6 +248,9 @@ FOUNDATION_EXTERN NSString * const TCOpenSDKErrorMsgWebPage;
 /** 设置头像图片过大 */
 FOUNDATION_EXTERN NSString * const TCOpenSDKErrorMsgUserHeadPicLarge;
 
+/** 用户未同意授权隐私协议 */
+FOUNDATION_EXPORT NSString * const TCOpenSDKErrorMsgUserNotAgreedAuthorization;
+
 ///@}
 
 /**
@@ -339,6 +342,9 @@ FOUNDATION_EXTERN NSString *const kOPEN_PERMISSION_GET_USER_INFO;
 
 /** 移动端获取用户信息 */
 FOUNDATION_EXTERN NSString *const kOPEN_PERMISSION_GET_SIMPLE_USER_INFO;
+
+/** 移动端获取用户信息 */
+FOUNDATION_EXTERN NSString *const kOPEN_PERMISSION_ALL;
 ///@}
 
 
