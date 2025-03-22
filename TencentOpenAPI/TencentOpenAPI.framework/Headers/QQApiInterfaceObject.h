@@ -34,6 +34,12 @@ typedef NS_ENUM(NSInteger, QQApiSendResultCode) {
     EQQAPI_THIRD_APP_GROUP_ERROR_HAS_BINDED          = 16,  // 该组织已经绑定群聊
     EQQAPI_THIRD_APP_GROUP_ERROR_NOT_BINDED          = 17,  // 该组织尚未绑定群聊
     EQQAPI_THIRD_APP_GROUP_ERROR_HAS_UNBINDED        = 18,  // 该组织已经解绑群聊
+    EQQAPI_IMAGE_SIZE_OUT_OF_BOUNND                  = 19,  // 图片大小超过限制（图片不能超过5M，缩略图不能超过1M）
+    EQQAPI_TITLE_LENGTH_OUT_OF_BOUNND                = 20,  // 标题长度超过限制（不能超过128）
+    EQQAPI_TITLE_NIL_ERROR                           = 21,  // 标题不能为空
+    EQQAPI_DESC_LENGTH_OUT_OF_BOUNND                 = 22,  // 描述信息长度超过限制（不能超过512）
+    EQQAPI_URL_LENGTH_OUT_OF_BOUNND                  = 23,  // URL参数长度超过限制（不能超过1024）
+    EQQAPI_URL_NIL_ERROR                             = 24,  // URL参数不能为空
     EQQAPIQZONENOTSUPPORTTEXT                        = 10000,   // qzone分享不支持text类型分享
     EQQAPIQZONENOTSUPPORTIMAGE                       = 10001,   // qzone分享不支持image类型分享
     EQQAPIVERSIONNEEDUPDATE                          = 10002,   // 当前QQ版本太低，需要更新至新版本才可以支持
@@ -90,6 +96,13 @@ __attribute__((visibility("default"))) @interface QQApiObject : NSObject
  * 默认分享到QQ，如果QQ未安装检测TIM是否安装
  */
 @property (nonatomic, assign) ShareDestType shareDestType;
+
+/**
+ * 检查参数是否完整有效
+ * @return 检查参数结果
+ */
+- (QQApiSendResultCode)checkParamValid;
+
 @end
 
 // ArkObject
@@ -97,7 +110,7 @@ __attribute__((visibility("default"))) @interface QQApiObject : NSObject
  */
 __attribute__((visibility("default"))) @interface ArkObject : NSObject
 @property (nonatomic, copy) NSString *arkData; ///< 显示Ark所需的数据，json串，长度暂不限制
-@property (nonatomic,assign) QQApiObject* qqApiObject; ///<原有老版本的QQApiObject
+@property (nonatomic, strong) QQApiObject* qqApiObject; ///<原有老版本的QQApiObject
 
 - (id)initWithData:(NSString *)arkData qqApiObject:(QQApiObject*)qqApiObject;
 + (id)objectWithData:(NSString *)arkData qqApiObject:(QQApiObject*)qqApiObject;
@@ -110,14 +123,14 @@ __attribute__((visibility("default"))) @interface QQApiMiniProgramObject : NSObj
 @property (nonatomic, copy) NSString *miniAppID; //必填，小程序的AppId（注：必须在QQ互联平台中，将该小程序与分享的App绑定）
 @property (nonatomic, copy) NSString *miniPath; //必填，小程序的展示路径
 @property (nonatomic, copy) NSString *webpageUrl; //必填，兼容低版本的网页链接
-@property (nonatomic,assign) MiniProgramType miniprogramType; //非必填，小程序的类型，默认正式版(3)，可选测试版(1)、预览版(4)
+@property (nonatomic, assign) MiniProgramType miniprogramType; //非必填，小程序的类型，默认正式版(3)，可选测试版(1)、预览版(4)
 @end
 
 //唤起小程序 - QQ 8.1.8
 __attribute__((visibility("default"))) @interface QQApiLaunchMiniProgramObject : QQApiObject
 @property (nonatomic, copy) NSString *miniAppID; //必填，小程序的AppId（注：必须在QQ互联平台中，将该小程序与分享的App绑定）
 @property (nonatomic, copy) NSString *miniPath; //小程序的展示路径,不填展示默认小程序首页
-@property (nonatomic,assign) MiniProgramType miniprogramType; //非必填，小程序的类型，默认正式版(3)，可选测试版(1)、开发版(0)
+@property (nonatomic, assign) MiniProgramType miniprogramType; //非必填，小程序的类型，默认正式版(3)，可选测试版(1)、开发版(0)
 @end
 
 //小程序唤起第三方 - SDK 3.3.9
@@ -553,19 +566,6 @@ __attribute__((visibility("default"))) @interface QQApiURLObject : QQApiObject
                       serviceID:(NSString *)serviceID
                      extendInfo:(NSDictionary *)extendInfo;
 
-@end
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Ad item object definition
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/** @brief 广告数据对象
- */
-@interface QQApiAdItem : NSObject
-@property (nonatomic, copy) NSString *title; ///<名称
-@property (nonatomic, copy) NSString *description;///<描述
-@property (nonatomic, copy) NSData *imageData;///<广告图片
-@property (nonatomic, strong) NSURL *target;///<广告目标链接
 @end
 
 
