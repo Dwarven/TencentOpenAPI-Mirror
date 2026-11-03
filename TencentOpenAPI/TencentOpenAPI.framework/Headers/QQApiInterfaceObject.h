@@ -354,9 +354,9 @@ __attribute__((visibility("default"))) @interface QQApiURLObject : QQApiObject
 // QQApiVideoForQZoneObject
 /** @brief 视频对象
  用于分享视频到空间，走写说说路径<code>QQApiObject</code>,assetURL和videoData两个参数必须设置至少一个参数，如果assetURL设置了忽略videoData参数
- @param assetURL可传ALAsset的ALAssetPropertyAssetURL，或者PHAsset的localIdentifier
- @param extMap 扩展字段
- @param videoData 视频数据，大小不超过50M
+ assetURL 可传ALAsset的ALAssetPropertyAssetURL，或者PHAsset的localIdentifier
+ extMap 扩展字段
+ videoData 视频数据，大小不超过50M
  */
 @interface QQApiVideoForQZoneObject : QQApiObject
 
@@ -526,11 +526,11 @@ __attribute__((visibility("default"))) @interface QQApiURLObject : QQApiObject
 // QQApiExtraServiceObject; 通用业务消息处理类（旧版，后续使用QQApiCommonServiceObject）
 /**
  @brief OpenSDK扩展支持的服务，通用接口，后续会扩充能力
- @param serviceID [必选] 扩展支持的服务类型ID，参考官方文档说明
- @param openID    [必选] 授权登录后对该用户的唯一标识
- @param toUin     [可选] 对方的QQ号码
- @param extraInfo [可选] 扩展字段
- @note 该接口的使用须先登录
+ serviceID [必选] 扩展支持的服务类型ID，参考官方文档说明
+ openID    [必选] 授权登录后对该用户的唯一标识
+ toUin     [可选] 对方的QQ号码
+ extraInfo [可选] 扩展字段
+ 该接口的使用须先登录
  */
 @interface QQApiExtraServiceObject : QQApiObject
 @property (nonatomic, copy) NSString *serviceID;
