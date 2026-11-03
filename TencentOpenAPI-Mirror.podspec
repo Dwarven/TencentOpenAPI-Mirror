@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 
   s.name                  = 'TencentOpenAPI-Mirror'
-  s.version               = '3.5.17'
+  s.version               = '3.6.22'
   s.summary               = 'A Mirror For TencentOpenAPI'
   s.homepage              = 'https://wiki.connect.qq.com'
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '12.0'
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
   s.author                = { 'Dwarven' => 'prison.yang@gmail.com' }
   s.social_media_url      = 'https://twitter.com/DwarvenYang'
